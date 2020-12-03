@@ -10,9 +10,9 @@ def countTrees(f, width, height, slopeX, slopeY):
         line = f.readline().strip()
         if line[cursor] == '#':
             count += 1
-            line = line[:cursor]+'X'+line[(cursor+1):]
+            #line = line[:cursor]+'X'+line[(cursor+1):]
         else:
-            line = line[:cursor]+'O'+line[(cursor+1):]
+            #line = line[:cursor]+'O'+line[(cursor+1):]
         # print(line)
         for i in range(1, slopeY):
             empty=f.readline().strip()
