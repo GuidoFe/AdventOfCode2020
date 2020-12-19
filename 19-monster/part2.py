@@ -1,4 +1,5 @@
 import sys
+import time
 
 
 class Rule:
@@ -61,7 +62,7 @@ def main():
                 for i in range(n8):
                     isValid, end8 = ruleDict[42].checkValidity(end8, line, ruleDict)
                     if not isValid:
-                        print(line, "NO")
+                        print(" NO", line)
                         break
                 if not isValid:
                     break
@@ -90,7 +91,7 @@ def main():
                 else:
                     if end11_31 == len(line):
                         count += 1
-                        print(line, "YES")
+                        print("YES", line)
                         break
                     else:
                         n11 += 1
