@@ -1,6 +1,3 @@
-import math
-import sys
-
 def main():
     f = open("input")
     sum = 0
@@ -22,5 +19,6 @@ def main():
                     group.add(c)
     sum += len(group)
     print(sum)
+
 
 main()

@@ -1,4 +1,3 @@
-
 class space:
     def __init__(self, char, row, col):
         if char == ".":
@@ -23,7 +22,12 @@ class space:
         occupied = 0
         row = self.row
         col = self.col
-        for e in [(row-1,col),(row,col-1),(row-1,col-1),(row+1,col),(row,col+1),(row+1,col+1),(row-1,col+1),(row+1,col-1)]:
+        near = []
+        for i in range(-1, 2):
+            for j in range(-1, 2):
+                if i != 0 or j != 0:
+                    near.append((row + i, col + i))
+        for e in near:
             isValid, type = returnTypeIfValid(m, e[0], e[1])
             if isValid:
                 if type > -1:
@@ -36,6 +40,7 @@ class space:
             self.newType = self.type
         return self.type != self.newType
 
+
 def returnTypeIfValid(m, row, col):
     maxRow = len(m)
     maxCol = len(m[0])
@@ -44,12 +49,14 @@ def returnTypeIfValid(m, row, col):
     else:
         return False, None
 
+
 def countOccupied(m):
     sum = 0
     for row in m:
         for e in row:
             sum += e.value()
     return sum
+
 
 def main():
     f = open("input")
@@ -76,7 +83,6 @@ def main():
                 for e in row:
                     e.flip()
     print(countOccupied(room))
-
 
 
 main()

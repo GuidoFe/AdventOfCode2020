@@ -1,10 +1,10 @@
 import sys
-import math
+
 
 def main():
     try:
         f = open(sys.argv[1])
-    except OSError as e:
+    except OSError:
         print("Error: can't find or read file")
         exit(1)
     right = 0
@@ -17,5 +17,6 @@ def main():
         if int(min) <= password.count(policyLetter) <= int(max):
             right += 1
     print("Valid passwords: " + str(right) + "/" + str(tot))
+
 
 main()

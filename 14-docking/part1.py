@@ -8,27 +8,30 @@ def decToBin36(n):
         result.append(0)
     return result
 
+
 def bin36ToDec(a):
     result = 0
     for i in range(len(a)):
-        result += a[i]*2**i
+        result += a[i] * 2**i
     return result
+
 
 # Value in base 10, return base 10
 def maskValue(v, mask):
     a = decToBin36(v)
     for i in range(36):
-        if mask[35-i] != "X":
-            a[i] = int(mask[35-i])
+        if mask[35 - i] != "X":
+            a[i] = int(mask[35 - i])
     return bin36ToDec(a)
+
 
 def main():
     f = open("input")
     mask = "X" * 36
     mem = {}
-    for l in f:
-        if len(l.strip()) != 0:
-            command, value = l.strip().split(" = ")
+    for line in f:
+        if len(line.strip()) != 0:
+            command, value = line.strip().split(" = ")
             if command == "mask":
                 mask = value
             else:
@@ -40,8 +43,6 @@ def main():
     #     print("mem["+e+"] = "+str(mem[e]))
     #     sum += mem[e]
     print(sum)
-
-
 
 
 main()

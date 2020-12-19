@@ -1,29 +1,31 @@
 import sys
 import math
 
-def find2020(l):
+
+def find2020(report):
     while(True):
-        a = l[0]
+        a = report[0]
         begin = 1
-        end = len(l)-1
+        end = len(report) - 1
 
-        #Check extremes of the set
-        if (a+l[begin])==2020:
-            return True, a, l[begin]
-        if (a+l[end])==2020:
-            return True, a, l[end]
+        # Check extremes of the set
+        if (a + report[begin]) == 2020:
+            return True, a, report[begin]
+        if (a + report[end]) == 2020:
+            return True, a, report[end]
 
-        while end-begin>1:
-            middle = math.floor((end-begin)/2+begin)
-            if a+l[middle]==2020:
-                return True, a, l[middle]
-            if a+l[middle] < 2020:
+        while end - begin > 1:
+            middle = math.floor((end - begin) / 2 + begin)
+            if a + report[middle] == 2020:
+                return True, a, report[middle]
+            if a + report[middle] < 2020:
                 begin = middle
             else:
                 end = middle
-        l.pop(0)
-        if len(l)==0:
+        report.pop(0)
+        if len(report) == 0:
             return False, None, None
+
 
 def main():
     # Get data from file passed as first argument
@@ -32,21 +34,22 @@ def main():
         exit(1)
     try:
         f = open(sys.argv[1])
-    except OSError as e:
+    except OSError:
         print("Error: can't find or read file")
         exit(1)
     inputList = list()
     for entry in f:
         inputList.append(int(entry))
     f.close()
-    #Sort items to allow binary search
+    # Sort items to allow binary search
     inputList.sort()
     found, a, b = find2020(inputList)
     if found:
-        print("Answer: ", a*b,", from the numbers ", a, " and ", b)
+        print("Answer: ", a * b, ", from the numbers ", a, " and ", b)
         exit(0)
     else:
         print("Answer not found")
         exit(1)
+
 
 main()

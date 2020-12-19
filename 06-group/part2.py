@@ -1,6 +1,3 @@
-import math
-import sys
-
 def main():
     f = open("input")
     group = []
@@ -20,12 +17,12 @@ def main():
                     group.append(c)
                 group.sort()
             elif len(group) > 0:
-                common=[]
+                common = []
                 for c in line:
                     start = 0
                     end = len(group) - 1
                     while True:
-                        mid = int(round((end-start)/2 + start))
+                        mid = int(round((end - start) / 2 + start))
                         if group[mid] == c:
                             common.append(group[mid])
                             break
@@ -39,5 +36,6 @@ def main():
                 group = list(common)
     sum += len(group)
     print(sum)
+
 
 main()

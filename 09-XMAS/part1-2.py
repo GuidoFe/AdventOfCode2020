@@ -1,26 +1,27 @@
 PREAMBLE = 25
 
+
 def main():
     f = open("input")
-    list = []
+    values = []
     input = []
-    for l in f:
-        input.append(int(l.strip()))
+    for line in f:
+        input.append(int(line.strip()))
     for i in range(PREAMBLE):
-        list.append(input[i])
+        values.append(input[i])
     for n in input[PREAMBLE:]:
         found = False
-        for i in range(PREAMBLE-1):
-            if list[i] < n:
-                for j in range(i+1, PREAMBLE):
-                    if list[i] + list[j] == n and list[i] != list[j]:
+        for i in range(PREAMBLE - 1):
+            if values[i] < n:
+                for j in range(i + 1, PREAMBLE):
+                    if values[i] + values[j] == n and values[i] != values[j]:
                         found = True
                         break
             if found:
                 break
         if found:
-            list = list[1:]
-            list.append(n)
+            values = values[1:]
+            values.append(n)
         else:
             print("Invalid number: " + str(n))
             break
@@ -42,10 +43,10 @@ def main():
             sum = 0
         else:
             i += 1
-    result = input[offset:end+1]
+    result = input[offset:end + 1]
     h = max(result)
-    l = min(result)
-    print("Sum of min and max: " + str(l+h))
+    k = min(result)
+    print("Sum of min and max: " + str(k + h))
 
 
 main()

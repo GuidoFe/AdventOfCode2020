@@ -1,13 +1,11 @@
-import sys
-
 def main():
     f = open("input")
     line = f.readline()
     width = len(line.strip())
     f.seek(0)
-    height=0
+    height = 0
     for line in f:
-        if len(line)>1:
+        if len(line) > 1:
             height += 1
     f.seek(0)
     cursor = 0
@@ -21,4 +19,6 @@ def main():
         if cursor < 0:
             cursor = width + cursor
     print("Count: {}".format(count))
+
+
 main()

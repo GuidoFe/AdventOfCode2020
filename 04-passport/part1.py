@@ -2,12 +2,13 @@
 
 def checkValidity(passport, requiredKeys):
     isValid = True
-    #Check the presence of the required keys:
+    # Check the presence of the required keys:
     for required in requiredKeys:
-        if not passport.has_key(required):
+        if required not in passport:
             isValid = False
             break
     return isValid
+
 
 def main():
     f = open("input")
@@ -30,5 +31,6 @@ def main():
     if len(passport) != 0 and checkValidity(passport, requiredKeys):
         count += 1
     print(count)
+
 
 main()

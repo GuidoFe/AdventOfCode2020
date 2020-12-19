@@ -2,43 +2,54 @@
 
 def checkValidity(passport, requiredKeys):
     isValid = True
-    #Check the presence of the required keys:
+    # Check the presence of the required keys:
     for req in requiredKeys:
-        if not passport.has_key(req):
+        if req not in passport:
             isValid = False
             break
         else:
             if req == "byr" and not (1920 <= int(passport[req]) <= 2002):
-                isValid = False; break
+                isValid = False
+                break
             elif req == "iyr" and not (2010 <= int(passport[req]) <= 2020):
-                isValid = False; break
+                isValid = False
+                break
             elif req == "eyr" and not (2020 <= int(passport[req]) <= 2030):
-                isValid = False; break
+                isValid = False
+                break
             elif req == "hgt":
                 try:
                     unit = passport[req][-2:]
                     value = int(passport[req][:-2])
-                except:
-                    isValid = False; break
+                except IndexError:
+                    isValid = False
+                    break
                 if unit == "cm":
                     if not (150 <= value <= 193):
-                        isValid = False; break
+                        isValid = False
+                        break
                 elif unit == "in":
                     if not (59 <= value <= 76):
-                        isValid = False; break
+                        isValid = False
+                        break
                 else:
-                    isValid = False; break
+                    isValid = False
+                    break
             elif req == "hcl":
                 code = passport[req][1:]
                 code = code.strip("0123456789abcdef")
                 if len(passport[req]) != 7 or passport[req][0] != "#" or len(code) != 0:
-                    isValid = False; break
+                    isValid = False
+                    break
             elif req == "ecl":
                 if not passport[req] in ["amb", "blu", "brn", "gry", "grn", "hzl", "oth"]:
-                    isValid = False; break
+                    isValid = False
+                    break
             elif req == "pid" and len(passport[req]) != 9:
-                isValid = False; break
+                isValid = False
+                break
     return isValid
+
 
 def main():
     f = open("input")
@@ -61,5 +72,6 @@ def main():
     if len(passport) != 0 and checkValidity(passport, requiredKeys):
         count += 1
     print(count)
+
 
 main()

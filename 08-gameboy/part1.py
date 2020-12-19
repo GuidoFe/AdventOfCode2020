@@ -1,5 +1,6 @@
 from enum import Enum
 
+
 class Command(Enum):
     ACC = 0
     JMP = 1
@@ -17,11 +18,13 @@ class Command(Enum):
         else:
             return Command.ERR
 
+
 class Line:
     def __init__(self, command, val):
         self.command = command
         self.val = val
         self.wasRead = False
+
 
 def main():
     f = open("input")
@@ -39,9 +42,9 @@ def main():
     cursor = 0
     while True:
         if cursor >= len(code):
-            break;
+            break
         if code[cursor].wasRead:
-            break;
+            break
         else:
             code[cursor].wasRead = True
         if code[cursor].command == Command.ACC:
@@ -52,5 +55,6 @@ def main():
         else:
             cursor += 1
     print("ACC = " + str(acc))
+
 
 main()

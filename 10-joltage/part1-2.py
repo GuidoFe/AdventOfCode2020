@@ -1,32 +1,32 @@
 
-def findNearest(list, index):
-    l = []
+def findNearest(jumps, index):
+    nearest = []
     i = index + 1
-    while i < len(list) and list[i] - list[index] <= 3:
-        l.append(i)
+    while i < len(jumps) and jumps[i] - jumps[index] <= 3:
+        nearest.append(i)
         i += 1
-    return l
+    return nearest
+
 
 def main():
     f = open("input")
-    list = [0]
-    for l in f:
-        list.append(int(l.strip()))
-    list.sort()
-    list.append(list[len(list)-1]+3)
+    jumps = [0]
+    for line in f:
+        jumps.append(int(line.strip()))
+    jumps.sort()
+    jumps.append(jumps[len(jumps) - 1] + 3)
     dict = {"0": 0, "1": 0, "2": 0, "3": 0}
-    for i in range(len(list)):
+    for i in range(len(jumps)):
         if i != 0:
-            dict[str(list[i]-list[i-1])] += 1
-    print "Part 1: " + str(dict["1"] * dict["3"])
-    ways = [0 for i in range(len(list))]
-
-    prod = 1
-    ways[len(ways)-1] = 1
-    for i in range(len(list)-2, -1, -1):
-        l = findNearest(list, i)
-        for e in l:
+            dict[str(jumps[i] - jumps[i - 1])] += 1
+    print("Part 1: " + str(dict["1"] * dict["3"]))
+    ways = [0 for i in range(len(jumps))]
+    ways[len(ways) - 1] = 1
+    for i in range(len(jumps) - 2, -1, -1):
+        nearest = findNearest(jumps, i)
+        for e in nearest:
             ways[i] += ways[e]
     print("Part 2:" + str(ways[0]))
+
 
 main()
