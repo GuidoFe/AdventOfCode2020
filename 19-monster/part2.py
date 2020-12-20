@@ -1,7 +1,3 @@
-import sys
-import time
-
-
 class Rule:
     def __init__(self, rules, val):
         self.rules = rules
