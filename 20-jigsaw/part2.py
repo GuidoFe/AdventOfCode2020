@@ -1,4 +1,5 @@
 import numpy as np
+import png
 
 
 def searchRight(columnToSearch, tiles, excluded):
@@ -178,10 +179,28 @@ def main():
                 print(" ", end="")
         print("")
     sum = 0
+    image = []
     for row in m:
+        imageRow = []
         for e in row:
-            if e == 1:
+            if e == 0:
+                imageRow.append(70)
+                imageRow.append(95)
+                imageRow.append(185)
+            elif e == 1:
+                imageRow.append(70)
+                imageRow.append(190)
+                imageRow.append(185)
                 sum += 1
+            else:
+                imageRow.append(0)
+                imageRow.append(255)
+                imageRow.append(0)
+        image.append(imageRow.copy())
+    f = open('monster.png', 'wb')
+    w = png.Writer(len(m[0]), len(m), greyscale=False)
+    w.write(f, image)
+    f.close()
     print("\u001b[0m" + str(sum))
 
 
